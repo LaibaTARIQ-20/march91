@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  /* From Sarah's mockup + print deck */
+  --navy: #142850;
+  --cream-page: #f6f1e4;
+  --cream-outer: #e9e2d0;
+  --gold: #8a6b3f;
+  --text-body: #4a4a46;
+  --text-muted: #5c5c58;
+  --text-faint: #8a8a82;
+  --rule: #142850;
+  --rule-soft: rgba(20, 40, 80, 0.2);
+}
+
+@theme inline {
+  --font-heading: "Lexend", sans-serif;
+  --font-body: "Playfair Display", serif;
+}
+
+body {
+  color: var(--navy);
+}
+
+/* Placeholder photos get a navy duotone treatment so they read as
+   intentional "coming soon" art direction, not broken images */
+.placeholder-photo {
+  filter: grayscale(100%) contrast(1.05) brightness(0.95);
+  position: relative;
+}
+
+.placeholder-badge {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: rgba(20, 40, 80, 0.85);
+  padding: 3px 8px;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise-in {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
