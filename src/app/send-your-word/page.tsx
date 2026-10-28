@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site-config";
 import Container from "@/components/layout/Container";
-import Button from "@/components/ui/Button";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 export const metadata: Metadata = {
   title: "Send Your Word",
@@ -38,9 +38,9 @@ export default function SendYourWordPage() {
         </div>
 
         <div>
-          <Button href={mailtoUrl} size="md">
+          <ButtonLink href={mailtoUrl} variant="solid" tone="light">
             Email Your Submission
-          </Button>
+          </ButtonLink>
         </div>
       </div>
     </Container>

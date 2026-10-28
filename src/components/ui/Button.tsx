@@ -1,5 +1,4 @@
-import { cn } from "@/lib/cn";
-import Link from "next/link";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -12,41 +11,26 @@ type ButtonProps = {
 };
 
 /**
- * Sharp-edged CTA button.
- * - `primary`: navy bg, white text
- * - `outline`: transparent bg, navy border + text
+ * Standard button delegating to ButtonLink to maintain single source of button styling.
  */
 export default function Button({
   children,
   href,
   variant = "primary",
-  size = "md",
   className,
   onClick,
   type = "button",
 }: ButtonProps) {
-  const baseStyles = cn(
-    "inline-flex items-center justify-center font-heading font-semibold uppercase tracking-[0.14em] transition-all border border-solid text-xs",
-    size === "sm" && "px-4 py-1.5",
-    size === "md" && "px-6 py-2.5",
-    variant === "primary" &&
-      "bg-navy border-navy text-cream hover:opacity-90",
-    variant === "outline" &&
-      "bg-transparent border-navy text-navy hover:bg-navy hover:text-cream",
-    className
-  );
-
-  if (href) {
-    return (
-      <Link href={href} className={baseStyles}>
-        {children}
-      </Link>
-    );
-  }
-
   return (
-    <button type={type} onClick={onClick} className={baseStyles}>
+    <ButtonLink
+      href={href}
+      variant={variant === "primary" ? "solid" : "outline"}
+      tone="light"
+      className={className}
+      onClick={onClick}
+      type={type}
+    >
       {children}
-    </button>
+    </ButtonLink>
   );
 }

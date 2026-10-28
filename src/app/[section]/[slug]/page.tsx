@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllArticles, getArticle, getArticlesBySection } from "@/lib/articles";
-import { isSection, sectionLabel } from "@/content/sections";
+import { isSection } from "@/content/sections";
 import { siteConfig } from "@/content/site-config";
-import ResponsiveImage from "@/components/ui/ResponsiveImage";
-import Byline from "@/components/ui/Byline";
-import Rubric from "@/components/ui/Rubric";
-import Container from "@/components/layout/Container";
-import ArticleBody from "@/components/article/ArticleBody";
-import RelatedArticles from "@/components/article/RelatedArticles";
+import { videos } from "@/content/videos";
+import { getReadingTime } from "@/lib/reading-time";
+import Wrap from "@/components/ui/Wrap";
+import ReadingProgress from "@/components/article/ReadingProgress";
+import ArticleHero from "@/components/article/ArticleHero";
+import KeepReading from "@/components/article/KeepReading";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 import ShareButtons from "@/components/article/ShareButtons";
 import type { Section } from "@/types";
 
@@ -29,9 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.title,
     description: article.excerpt,
-    openGraph: image
-      ? { images: [{ url: image }] }
-      : undefined,
+    openGraph: image ? { images: [{ url: image }] } : undefined,
   };
 }
 
@@ -49,94 +48,106 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   const displayImage = article.articleImage ?? article.heroImage;
-  const label = sectionLabel(article.section as Section);
+  const readingTime = getReadingTime(article.body);
+
+  // Associated video if videoId matches
+  const associatedVideo = article.videoId
+    ? videos.find((v) => v.id === article.videoId)
+    : undefined;
+
+  // "Keep reading" with up to 3 other articles from same section (fallback: latest articles)
   const allSectionArticles = await getArticlesBySection(article.section as Section);
-  const related = allSectionArticles.filter((a) => a.slug !== article.slug);
+  let keepReading = allSectionArticles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  if (keepReading.length === 0) {
+    const allArticles = await getAllArticles();
+    keepReading = allArticles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  }
+
   const shareUrl = `${siteConfig.siteUrl}/${article.section}/${article.slug}`;
 
-  const formattedDate = article.publishedAt
-    ? new Date(article.publishedAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
-
   return (
-    <Container className="py-10 md:py-16">
-      <article>
-        {/* Centered header */}
-        <header className="max-w-3xl mx-auto text-center mb-10 space-y-4">
-          <Rubric label={label} href={`/${article.section}`} />
-          <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight text-navy">
-            {article.title}
-          </h1>
-          <p className="font-body text-lg text-ink leading-relaxed">
-            {article.excerpt}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            {article.author && <Byline author={article.author} />}
-            {article.author && formattedDate && (
-              <span className="text-muted text-xs">&middot;</span>
-            )}
-            {formattedDate && (
-              <time
-                dateTime={article.publishedAt}
-                className="font-heading text-xs uppercase tracking-[0.12em] text-muted"
-              >
-                {formattedDate}
-              </time>
-            )}
-          </div>
-        </header>
+    <div className="py-10 desk:py-16">
+      <ReadingProgress />
 
-        {/* Lead Image */}
-        {displayImage && (
-          <div className="max-w-5xl mx-auto my-10">
-            <ResponsiveImage
-              src={displayImage}
-              alt={article.title}
-              aspect={article.heroAspect ?? "wide"}
-              isPlaceholder={article.isPlaceholderImage}
-              photoCredit={article.photoCredit}
-              sizes="(max-width: 1280px) 100vw, 1024px"
-              priority
+      <Wrap>
+        {/* ── HERO ── */}
+        <ArticleHero
+          article={article}
+          displayImage={displayImage}
+          readingTime={readingTime}
+        />
+
+        {/* ── Video Player (under title/hero if videoId exists) ── */}
+        {associatedVideo ? (
+          <div className="max-w-[680px] mx-auto mb-10">
+            <VideoPlayer
+              poster={associatedVideo.poster}
+              title={associatedVideo.title}
+              src={associatedVideo.src}
+              youtubeId={associatedVideo.youtubeId}
             />
           </div>
-        )}
+        ) : null}
 
-        {/* Article Body */}
-        <ArticleBody body={article.body} />
+        {/* ── Reading Column: max 680px, font-body 1.125rem, line-height 1.8 ── */}
+        <div className="max-w-[680px] mx-auto">
+          <div className="space-y-6 text-[1.125rem] leading-[1.8] font-body text-ink">
+            {article.body.map((para, idx) => {
+              const isFirst = idx === 0;
+              return (
+                <p key={idx} className={isFirst ? "drop-cap" : ""}>
+                  {para}
+                </p>
+              );
+            })}
+          </div>
 
-        {/* Glossary Aside */}
-        {article.glossary && article.glossary.length > 0 && (
-          <aside className="max-w-2xl mx-auto my-8 p-6 border border-line bg-cream">
-            <h2 className="font-heading uppercase text-xs text-gold-text tracking-[0.14em] font-semibold mb-4">
-              Terms
-            </h2>
-            <dl className="divide-y divide-line">
-              {article.glossary.map((item, idx) => (
-                <div key={idx} className={idx === 0 ? "pb-3" : "py-3"}>
-                  <dt className="font-display font-bold text-navy text-base mb-1">
-                    {item.term}
-                  </dt>
-                  <dd className="font-body text-ink text-sm leading-relaxed m-0">
-                    {item.definition}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
-        )}
+          {/* Wide Pull Quote if exists */}
+          {article.pullQuote ? (
+            <figure className="my-12 py-8 border-y border-line text-center">
+              <blockquote className="font-display italic font-[500] text-[28px] desk:text-[34px] leading-[1.2] text-navy">
+                &ldquo;{article.pullQuote}&rdquo;
+              </blockquote>
+            </figure>
+          ) : null}
 
-        {/* Share buttons */}
-        <div className="max-w-2xl mx-auto">
-          <ShareButtons url={shareUrl} />
+          {/* Glossary Aside if exists */}
+          {article.glossary && article.glossary.length > 0 && (
+            <aside className="my-10 p-6 border border-line bg-cream">
+              <h2 className="kicker text-gold-text mb-4">Terms</h2>
+              <dl className="divide-y divide-line">
+                {article.glossary.map((item, idx) => (
+                  <div key={idx} className={idx === 0 ? "pb-3" : "py-3"}>
+                    <dt className="font-display font-bold text-navy text-base mb-1">
+                      {item.term}
+                    </dt>
+                    <dd className="font-body text-ink text-sm leading-relaxed m-0">
+                      {item.definition}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </aside>
+          )}
+
+          {/* Author line at the end */}
+          {article.author ? (
+            <div className="mt-12 pt-6 border-t border-line">
+              <p className="font-display italic text-lg text-navy">
+                Words by <span className="font-bold not-italic">{article.author}</span>
+              </p>
+            </div>
+          ) : null}
+
+          {/* Share buttons */}
+          <div className="my-8">
+            <ShareButtons url={shareUrl} />
+          </div>
         </div>
 
-        {/* Related articles */}
-        <RelatedArticles articles={related} sectionName={label} />
-      </article>
-    </Container>
+        {/* ── "Keep reading" section ── */}
+        <KeepReading articles={keepReading} currentSection={article.section} />
+      </Wrap>
+    </div>
   );
 }

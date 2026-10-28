@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { sections } from "@/content/sections";
 import Container from "@/components/layout/Container";
-import Button from "@/components/ui/Button";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 export default function NotFound() {
   return (
@@ -16,9 +16,9 @@ export default function NotFound() {
         </p>
 
         <div>
-          <Button href="/" size="md">
+          <ButtonLink href="/" variant="solid" tone="light">
             Return Home
-          </Button>
+          </ButtonLink>
         </div>
 
         <div className="pt-8 border-t border-line">

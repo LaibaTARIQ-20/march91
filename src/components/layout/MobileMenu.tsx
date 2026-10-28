@@ -82,7 +82,7 @@ export default function MobileMenu() {
         id={panelId}
         inert={!open}
         className={cn(
-          "fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[420px] bg-cream border-l border-line flex flex-col desk:hidden overflow-y-auto transition-transform duration-300 ease-out",
+          "fixed top-0 right-0 bottom-0 z-50 w-full sm:w-105 bg-cream border-l border-line flex flex-col desk:hidden overflow-y-auto transition-transform duration-300 ease-out",
           open ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -93,7 +93,7 @@ export default function MobileMenu() {
               {siteConfig.issueLabel}
             </span>
             <p
-              className="font-[900] text-2xl text-navy mt-1"
+              className="font-black text-2xl text-navy mt-1"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Contents
@@ -120,13 +120,13 @@ export default function MobileMenu() {
                 className="group flex items-baseline gap-4 py-3 border-b border-line transition-colors"
               >
                 <span
-                  className="text-xl text-gold-text font-[500] shrink-0 w-8"
+                  className="text-xl text-gold-text font-medium shrink-0 w-8"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   0{idx + 1}
                 </span>
                 <span
-                  className="italic font-[500] text-3xl text-navy group-hover:text-gold-text transition-colors leading-tight"
+                  className="italic font-medium text-3xl text-navy group-hover:text-gold-text transition-colors leading-tight"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {item.label}
@@ -151,7 +151,7 @@ export default function MobileMenu() {
               <Link
                 href="/send-your-word"
                 onClick={close}
-                className="hover:text-navy py-1 col-span-2 text-gold-text font-[500]"
+                className="hover:text-navy py-1 col-span-2 text-gold-text font-medium"
               >
                 Send Your Word &rarr;
               </Link>

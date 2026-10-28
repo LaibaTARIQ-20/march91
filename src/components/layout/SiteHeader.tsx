@@ -15,10 +15,10 @@ export default function SiteHeader() {
       {/* ── Centred Masthead ── */}
       <div
         id="site-masthead"
-        className="relative text-center pt-[34px] pb-[22px] px-5"
+        className="relative text-center pt-8.5 pb-5.5 px-5"
       >
         <p
-          className="font-display font-[900] text-[clamp(48px,7vw,104px)] tracking-[-0.03em] leading-none text-navy m-0"
+          className="font-display font-black text-[clamp(48px,7vw,104px)] tracking-[-0.03em] leading-none text-navy m-0"
         >
           <Link href="/" className="hover:opacity-95 transition-opacity inline-block">
             March &#8217;91

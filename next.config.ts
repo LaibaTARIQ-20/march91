@@ -5,12 +5,7 @@ const nextConfig: NextConfig = {
     cpus: 1,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },
-    ],
+    remotePatterns: [],
   },
 };
 

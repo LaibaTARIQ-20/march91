@@ -18,7 +18,8 @@ export const articles: Article[] = [
       "Consider this your front-row recap of what just went down on campus.",
       "We're SAMAAJ This happened. We watched. You're reading.",
     ],
-    heroImage: "/images/articles/samaj-intro.jpeg",
+    heroImage: "/images/articles/samaj-lights.jpg",
+    heroPosition: "center",
     isPlaceholderImage: false,
     isFeatured: true,
     readTime: "3 min read",
@@ -187,6 +188,7 @@ export const articles: Article[] = [
       "Make do of what you have, she voices. Start by ornamenting your space, no matter how big or small. Use pieces that you love, putting them in rooms you most visit. Tidiness is the very beginning of art. No one, absolutely no one, is willing to work on a dirty canvas. Make your bed. That is how you take control of your life. That is how you become your own boss.",
     ],
     heroImage: "/images/articles/karobaar-pottersw.jpeg",
+    videoId: "asma-akhtar-interview",
     readTime: "5 min read",
     publishedAt: "2026-10-02T15:45:00.000Z",
   },
@@ -338,7 +340,7 @@ export const articles: Article[] = [
     author: "Iraj Nowsherwan",
     excerpt:
       "On the surface Madame Bovary is the story of a bored housewife, trapped in an unhappy marriage, living vicariously through novels of great romantic loves.",
-    heroImage: "/images/articles/madame-bovary.jpg",
+    heroImage: "/images/articles/madame-bovary.jpeg",
     heroAspect: "tall",
     tags: ["Book review"],
     body: [

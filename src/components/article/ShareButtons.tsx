@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 type ShareButtonsProps = {
   url: string;
@@ -27,21 +27,21 @@ export default function ShareButtons({ url }: ShareButtonsProps) {
       <span className="font-heading text-xs font-semibold uppercase tracking-[0.14em] text-muted mr-2">
         Share
       </span>
-      <a
+      <ButtonLink
         href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center font-heading font-semibold uppercase tracking-[0.14em] transition-all border border-solid text-xs px-4 py-1.5 bg-transparent border-navy text-navy hover:bg-navy hover:text-cream"
+        external
+        variant="outline"
+        tone="light"
       >
         WhatsApp
-      </a>
-      <Button
+      </ButtonLink>
+      <ButtonLink
         variant="outline"
-        size="sm"
+        tone="light"
         onClick={handleCopy}
       >
         {copied ? "Copied" : "Copy Link"}
-      </Button>
+      </ButtonLink>
     </div>
   );
 }

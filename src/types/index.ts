@@ -30,7 +30,10 @@ export type Article = {
   publishedAt?: string;
   tags?: string[];
   readTime?: string;
+  pullQuote?: string;
+  heroPosition?: string;
   glossary?: GlossaryItem[];
+  videoId?: string;
 };
 
 export type HeroSlide = {
@@ -41,6 +44,22 @@ export type HeroSlide = {
   title: string;
   text?: string;
   href?: string;
+};
+
+export type Video = {
+  id: string;
+  title: string;
+  label: string;
+  poster: string;
+  src?: string;
+  youtubeId?: string;
+};
+
+export type Short = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  href: string;
 };
 
 export type VideoItem = {

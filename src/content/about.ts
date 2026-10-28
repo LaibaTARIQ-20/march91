@@ -1,6 +1,6 @@
 export const aboutContent = {
   description:
-    "The student magazine of MARCOMS, NUST Islamabad.",
+    "The official student magazine of NUST.",
   team: [
     { name: "Sarah Rameen Qureshi", role: "Editor in Chief" },
     { name: "Anusha Rehman", role: "Editor Head" },

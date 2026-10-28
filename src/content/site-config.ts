@@ -1,9 +1,13 @@
 export const siteConfig = {
   issueLabel: "Issue No. 1 · Fall 2026",
   location: "NUST, ISLAMABAD",
-  description: "The student magazine of MARCOMS, NUST Islamabad.",
-  tagline: "The student magazine of MARCOMS, NUST Islamabad.",
-  credit: "A MARCOMS NUST Publication",
+  description: "The official student magazine of NUST.",
+  tagline: "The official student magazine of NUST.",
+  credit: "A project by MARCOMS.",
+  callForArticles: {
+    text: "March '91 is looking for more stories. Send us your article.",
+    href: "/send-your-word",
+  },
   editorNote:
     "Every issue of March '91 starts the same way: a group of students who think they have a story worth telling, and the stubbornness to see it through.",
   editorAttribution: "— Editor in Chief",

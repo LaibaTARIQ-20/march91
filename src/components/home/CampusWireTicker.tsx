@@ -1,46 +1,77 @@
-import Link from "next/link";
-import { articles } from "@/content/articles";
+"use client";
 
-export default function CampusWireTicker() {
-  // Use strictly authentic articles
-  const headlines = articles.map((a) => ({
-    title: a.title,
-    href: `/${a.section}/${a.slug}`,
-    badge: a.section.toUpperCase(),
-  }));
+import Link from "next/link";
+import { siteConfig } from "@/content/site-config";
+import type { Article } from "@/types";
+
+type CampusWireTickerProps = {
+  articles: Article[];
+};
+
+export default function CampusWireTicker({ articles }: CampusWireTickerProps) {
+  const callForArticles = siteConfig.callForArticles;
 
   return (
     <div
       aria-label="Campus Wire Ticker"
-      className="bg-navy text-cream overflow-hidden h-11 flex items-center border-b border-line relative z-20"
+      className="bg-navy text-cream overflow-hidden py-[15px] text-xs uppercase tracking-[0.12em] font-body"
     >
-      {/* Static Label with Gold Pulsing Dot */}
-      <div className="bg-navy px-4 sm:px-6 h-full flex items-center gap-2.5 shrink-0 z-10 border-r border-cream/20">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-gold" />
-        </span>
-        <span className="font-heading text-xs uppercase tracking-[0.16em] text-cream font-semibold whitespace-nowrap">
-          Start The Day Here
-        </span>
-      </div>
+      <div className="mq flex gap-14 whitespace-nowrap w-max hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+        {/* First Copy */}
+        <div className="flex items-center gap-14 shrink-0">
+          {/* Label: Start the day here in cream with a small gold square */}
+          <span className="inline-flex items-center gap-2 text-cream font-medium tracking-[0.14em]">
+            <span className="w-1.5 h-1.5 bg-gold shrink-0 inline-block" aria-hidden="true" />
+            Start the day here
+          </span>
 
-      {/* Marquee Track */}
-      <div className="flex-1 overflow-hidden">
-        <div className="mq flex items-center">
-          {[...headlines, ...headlines].map((item, idx) => (
+          {/* Call for articles */}
+          {callForArticles && (
             <Link
-              key={idx}
-              href={item.href}
-              className="inline-flex items-center gap-3 px-6 text-xs font-body text-cream/90 hover:text-gold transition-colors whitespace-nowrap group"
+              href={callForArticles.href}
+              className="text-cream link-sweep inline-block"
             >
-              <span className="font-heading text-xs uppercase tracking-[0.12em] text-gold border border-gold/30 px-1.5 py-0.5">
-                {item.badge}
-              </span>
-              <span className="group-hover:underline underline-offset-4">
-                {item.title}
-              </span>
-              <span className="text-cream/30 text-xs">&middot;</span>
+              {callForArticles.text}
+            </Link>
+          )}
+
+          {/* Article titles */}
+          {articles.map((item) => (
+            <Link
+              key={`a1-${item.slug}`}
+              href={`/${item.section}/${item.slug}`}
+              className="text-cream link-sweep inline-block"
+            >
+              {item.title}
+            </Link>
+          ))}
+        </div>
+
+        {/* Second Copy (for seamless continuous loop) */}
+        <div className="flex items-center gap-14 shrink-0" aria-hidden="true">
+          <span className="inline-flex items-center gap-2 text-cream font-medium tracking-[0.14em]">
+            <span className="w-1.5 h-1.5 bg-gold shrink-0 inline-block" />
+            Start the day here
+          </span>
+
+          {callForArticles && (
+            <Link
+              href={callForArticles.href}
+              tabIndex={-1}
+              className="text-cream link-sweep inline-block"
+            >
+              {callForArticles.text}
+            </Link>
+          )}
+
+          {articles.map((item) => (
+            <Link
+              key={`a2-${item.slug}`}
+              href={`/${item.section}/${item.slug}`}
+              tabIndex={-1}
+              className="text-cream link-sweep inline-block"
+            >
+              {item.title}
             </Link>
           ))}
         </div>

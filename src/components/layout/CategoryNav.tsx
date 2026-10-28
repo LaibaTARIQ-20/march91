@@ -6,17 +6,19 @@ import { usePathname } from "next/navigation";
 import { sections } from "@/content/sections";
 import { cn } from "@/lib/cn";
 
-/**
- * Sticky nav per spec:
- * - Hidden below desk (821px); visible from desk up.
- * - Cream bg, hairline above and below, centred items, gap 40px, padding 16px 0.
- * - 11px uppercase tracking .16em navy. Hover: gold-text. Active: underlined.
- * - Items: section links, a "|" separator (aria-hidden), Videos, Archive.
- * - When scrolled past the masthead, shows a small "March '91" text wordmark at left.
- */
 export default function CategoryNav() {
   const pathname = usePathname();
   const [scrolledPast, setScrolledPast] = useState(false);
+  const [scrolledPast8px, setScrolledPast8px] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPast8px(window.scrollY > 8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const masthead = document.getElementById("site-masthead");
@@ -41,14 +43,19 @@ export default function CategoryNav() {
   return (
     <nav
       aria-label="Magazine Sections"
-      className="hidden desk:flex relative justify-center items-center gap-[40px] py-4 px-5 desk:px-10 border-t border-b border-line sticky top-0 z-40 bg-cream text-[11px] uppercase tracking-[0.16em] font-body font-[400] text-navy"
+      className={cn(
+        "hidden desk:flex justify-center items-center gap-10 py-4 px-5 desk:px-10 border-t sticky top-0 z-40 transition-all duration-200 text-[11px] uppercase tracking-[0.16em] font-body font-normal text-navy",
+        scrolledPast8px
+          ? "bg-cream/90 backdrop-blur-md border-b border-line shadow-none"
+          : "bg-cream border-b border-line"
+      )}
     >
-      {/* Mini wordmark — appears after scrolling past masthead */}
+      {/* Mini wordmark */}
       <Link
         href="/"
         aria-hidden={!scrolledPast}
         className={cn(
-          "absolute left-5 desk:left-10 text-[20px] font-[900] tracking-[-0.03em] leading-none text-navy transition-opacity duration-200",
+          "absolute left-5 desk:left-10 text-[20px] font-black tracking-[-0.03em] leading-none text-navy transition-opacity duration-200",
           scrolledPast ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         style={{ fontFamily: "var(--font-display)" }}
@@ -57,7 +64,7 @@ export default function CategoryNav() {
       </Link>
 
       {/* Section links */}
-      <div className="flex items-center gap-[40px]">
+      <div className="flex items-center gap-10">
         {sections.map((item) => {
           const isActive =
             pathname === `/${item.slug}` ||
@@ -68,8 +75,10 @@ export default function CategoryNav() {
               href={`/${item.slug}`}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "transition-colors hover:text-gold-text py-0.5",
-                isActive && "underline underline-offset-4 decoration-navy font-[500]"
+                "py-0.5 relative inline-block transition-colors hover:text-gold-text",
+                isActive
+                  ? "font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-navy"
+                  : "link-sweep font-normal"
               )}
             >
               {item.label}
@@ -90,8 +99,10 @@ export default function CategoryNav() {
               href={item.href}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "transition-colors hover:text-gold-text py-0.5",
-                isActive && "underline underline-offset-4 decoration-navy font-[500]"
+                "py-0.5 relative inline-block transition-colors hover:text-gold-text",
+                isActive
+                  ? "font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-navy"
+                  : "link-sweep font-normal"
               )}
             >
               {item.label}
