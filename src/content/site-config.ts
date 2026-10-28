@@ -1,26 +1,16 @@
-// Edit these once Sarah sends the real details — used across header/footer.
-
 export const siteConfig = {
-  issueLabel: "ISSUE NO. 1 | SEPT 2026",
+  issueLabel: "Issue No. 1 · Fall 2026",
   location: "NUST, ISLAMABAD",
+  description: "The student magazine of MARCOMS, NUST Islamabad.",
+  tagline: "The student magazine of MARCOMS, NUST Islamabad.",
+  credit: "A MARCOMS NUST Publication",
   editorNote:
     "Every issue of March '91 starts the same way: a group of students who think they have a story worth telling, and the stubbornness to see it through.",
   editorAttribution: "— Editor in Chief",
   directorNote:
     "March '91 is proof of what student-led storytelling can look like when it's given real space to grow.",
   directorAttribution: "— MARCOMS Director",
-
-  // TODO: replace once Sarah sends these
-  instagramUrl: "#",
-  magazineEmail: "TBD@nust.edu.pk",
-  sirRazaContact: "TBD",
+  instagramUrl: "https://www.instagram.com/march91magazine",
+  magazineEmail: "march91.magazine@gmail.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 };
-
-export const navSections: { label: string; href: string }[] = [
-  { label: "Samaj", href: "/samaj" },
-  { label: "Karobaar", href: "/karobaar" },
-  { label: "NUST Box'd", href: "/nust-boxd" },
-  { label: "Lifestyle", href: "/lifestyle" },
-  { label: "Opinion", href: "/opinion" },
-  { label: "Sports", href: "/sports" },
-];

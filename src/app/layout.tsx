@@ -1,40 +1,55 @@
 import type { Metadata } from "next";
 import "@fontsource/playfair-display/500.css";
-import "@fontsource/playfair-display/600.css";
+import "@fontsource/playfair-display/500-italic.css";
 import "@fontsource/playfair-display/700.css";
-import "@fontsource/playfair-display/900.css";
 import "@fontsource/playfair-display/700-italic.css";
+import "@fontsource/playfair-display/900.css";
+import "@fontsource/playfair-display/900-italic.css";
+import "@fontsource/lexend/300.css";
 import "@fontsource/lexend/400.css";
 import "@fontsource/lexend/500.css";
-import "@fontsource/lexend/600.css";
-import "@fontsource/lexend/700.css";
 import "./globals.css";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
+import { siteConfig } from "@/content/site-config";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "March '91 ",
-  description: "The student magazine of MARCOMS, NUST Islamabad.",
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: "March \u201891",
+    template: "%s | March \u201891",
+  },
+  description: siteConfig.description,
   openGraph: {
-    title: "March '91",
-    description: "The student magazine of MARCOMS, NUST Islamabad.",
-    images: ["/images/brand-banner.png"],
+    title: "March \u201891",
+    description: siteConfig.description,
+    images: ["/images/brand/brand-banner.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "March '91",
-    description: "The student magazine of MARCOMS, NUST Islamabad.",
-    images: ["/images/brand-banner.png"],
+    title: "March \u201891",
+    description: siteConfig.description,
+    images: ["/images/brand/brand-banner.png"],
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#E9E2D0]">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-cream text-ink">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-cream focus:text-navy focus:font-body focus:text-sm"
+        >
+          Skip to main content
+        </a>
         <SiteHeader />
-        <main className="flex-1 flex justify-center">
-          <div className="w-full max-w-6xl bg-[#F6F1E4]">{children}</div>
+        <main id="main" className="flex-1">
+          {children}
         </main>
         <SiteFooter />
       </body>

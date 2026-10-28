@@ -1,54 +1,350 @@
 @import "tailwindcss";
 
-:root {
-  /* From Sarah's mockup + print deck */
-  --navy: #142850;
-  --cream-page: #f6f1e4;
-  --cream-outer: #e9e2d0;
-  --gold: #8a6b3f;
-  --text-body: #4a4a46;
-  --text-muted: #5c5c58;
-  --text-faint: #8a8a82;
-  --rule: #142850;
-  --rule-soft: rgba(20, 40, 80, 0.2);
+@theme {
+  /* ── Colours (these are the only colours used in this project) ── */
+  --color-navy: #142850;
+  --color-cream: #F6F1E4;
+  --color-cream-dark: #EAE3D2;
+  --color-gold: #8A6B3F;
+  --color-gold-text: #735831;
+  --color-ink: #4A4A46;
+  --color-muted: #5C5C58;
+  --color-line: rgba(20, 40, 80, 0.15);
+
+  /* ── Fonts ── */
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Lexend", system-ui, -apple-system, sans-serif;
+  /* Alias: font-heading maps to the same Lexend stack (used for nav, kickers, UI labels) */
+  --font-heading: "Lexend", system-ui, -apple-system, sans-serif;
+
+  /* ── Custom breakpoint ── */
+  --breakpoint-desk: 821px;
 }
 
-@theme inline {
-  --font-heading: "Lexend", sans-serif;
-  --font-body: "Playfair Display", serif;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--navy);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Placeholder photos get a navy duotone treatment so they read as
-   intentional "coming soon" art direction, not broken images */
-.placeholder-photo {
-  filter: grayscale(100%) contrast(1.05) brightness(0.95);
-  position: relative;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.placeholder-badge {
-  font-family: var(--font-heading);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: #fff;
-  background: rgba(20, 40, 80, 0.85);
-  padding: 3px 8px;
+a:hover {
+  color: var(--color-gold-text);
 }
 
-@keyframes rise-in {
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+@layer components {
+  /* Kicker: Lexend 500, 11px, uppercase, tracking .14em, gold-text */
+  .kicker, .k {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold-text);
+    font-weight: 500;
+    font-family: var(--font-body);
+  }
+
+  /* Byline: 11px, uppercase, tracking .12em, muted */
+  .byline, .by {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-family: var(--font-body);
+  }
+
+  /* Rule: 1px solid line colour */
+  .rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* Button: 1px navy border, 14px 26px padding, 11px uppercase tracking .16em weight 500 */
+  .btn {
+    display: inline-block;
+    border: 1px solid var(--color-navy);
+    color: var(--color-navy);
+    padding: 14px 26px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-body);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn:hover {
+    background-color: var(--color-navy);
+    color: var(--color-cream);
+  }
+
+  /* Section heading: Playfair 900, clamp(40px,5vw,72px), line-height 1, tracking -.02em, navy */
+  .h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-navy);
+  }
+}
+
+/* ── Hairline helper classes ── */
+.rule-b {
+  border-bottom: 1px solid var(--color-line);
+}
+.rule-t {
+  border-top: 1px solid var(--color-line);
+}
+.rule-l {
+  border-left: 1px solid var(--color-line);
+}
+.rule-r {
+  border-right: 1px solid var(--color-line);
+}
+.rule-all {
+  border: 1px solid var(--color-line);
+}
+
+/* Cover headline: Playfair 900, clamp(52px,6.4vw,104px), line-height .95, tracking -.025em */
+.font-cover-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(52px, 6.4vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+
+/* Section title used in cover teaser and feature spread */
+.font-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Editorial kicker (gold-text variant) */
+.editorial-kicker {
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-gold-text);
+  font-weight: 500;
+}
+
+/* Drop cap for first paragraph of an article */
+.drop-cap:first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.8rem;
+  line-height: 0.78;
+  padding: 6px 14px 0 0;
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Keyframes (exactly as specified in the reference mockup) ── */
+@keyframes cv {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  5%, 25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pb {
   from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes mq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shm {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes qa {
+  0% {
     opacity: 0;
     transform: translateY(14px);
   }
-  to {
+  6%, 44% {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+  50%, 100% {
+    opacity: 0;
+    transform: translateY(-14px);
   }
 }
 
-.hero-rise-in {
-  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+@keyframes qb {
+  0%, 50% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  56%, 94% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes da {
+  0%, 48% {
+    background-color: var(--color-navy);
+  }
+  50%, 100% {
+    background-color: var(--color-line);
+  }
+}
+
+@keyframes db {
+  0%, 48% {
+    background-color: var(--color-line);
+  }
+  50%, 98% {
+    background-color: var(--color-navy);
+  }
+  100% {
+    background-color: var(--color-line);
+  }
+}
+
+/* ── Animations wrapped in prefers-reduced-motion ── */
+@media (prefers-reduced-motion: no-preference) {
+  .cv {
+    opacity: 0;
+    animation: cv 20s infinite;
+  }
+  .pb {
+    transform-origin: left;
+    animation: pb 5s linear infinite;
+  }
+  .mq {
+    display: flex;
+    gap: 56px;
+    white-space: nowrap;
+    animation: mq 40s linear infinite;
+    width: max-content;
+  }
+  .shm {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    padding-right: 20px;
+    animation: shm 45s linear infinite;
+  }
+  .shm:hover {
+    animation-play-state: paused;
+  }
+  .qa {
+    animation: qa 14s infinite;
+  }
+  .qb {
+    animation: qb 14s infinite;
+  }
+  .da {
+    animation: da 14s infinite;
+  }
+  .db {
+    animation: db 14s infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .pb {
+    transform: scaleX(1);
+    animation: none;
+  }
+  .mq {
+    display: flex;
+    gap: 56px;
+    white-space: nowrap;
+    width: max-content;
+    animation: none;
+  }
+  .shm {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    padding-right: 20px;
+    animation: none;
+  }
+  .qa {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .qb {
+    display: none;
+    animation: none;
+  }
+  .da {
+    background-color: var(--color-navy);
+    animation: none;
+  }
+  .db {
+    background-color: var(--color-line);
+    animation: none;
+  }
 }

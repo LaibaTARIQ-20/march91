@@ -1,69 +1,41 @@
-import CoverStoryHero from "@/components/CoverStoryHero";
-import {
-  ArticleCard,
-  InterviewBlock,
-  NotePanel,
-} from "@/components/ArticleCard";
-import { getCoverStory, getFeaturedGrid } from "@/content/articles";
+import MagazineCoverHero from "@/components/home/MagazineCoverHero";
+import CampusWireTicker from "@/components/home/CampusWireTicker";
+import InThisIssueContents from "@/components/home/InThisIssueContents";
+import EditorNote from "@/components/home/EditorNote";
+import Container from "@/components/layout/Container";
 import { siteConfig } from "@/content/site-config";
 
 export default function Home() {
-  const cover = getCoverStory();
-  const grid = getFeaturedGrid();
-  const [featuredStory, ...secondary] = grid;
-
   return (
-    <div>
-      {/* ── Cover story hero ── */}
-      <CoverStoryHero article={cover} />
+    <div className="w-full">
+      <h1 className="sr-only">
+        March &apos;91 — The Student Magazine of MARCOMS NUST Islamabad
+      </h1>
 
-      {/* ── Interview block ── */}
-      <div className="h-px" style={{ background: "var(--rule-soft)" }} />
-      <InterviewBlock />
+      {/* ── §4.1 The Cover: Full-bleed Cover Story Hero ── */}
+      <MagazineCoverHero />
 
-      {/* ── Featured story ── */}
-      {featuredStory && (
-        <>
-          <div className="h-px" style={{ background: "var(--rule)" }} />
-          <div
-            className="px-6 md:px-10 py-10 md:py-12 border-b"
-            style={{ borderColor: "var(--rule-soft)" }}
-          >
-            <ArticleCard article={featuredStory} size="featured" />
-          </div>
-        </>
-      )}
+      {/* ── §4.2 Campus Wire: Continuous Marquee Ticker ── */}
+      <CampusWireTicker />
 
-      {/* ── Secondary articles grid ── */}
-      <div className="h-px" style={{ background: "var(--rule-soft)" }} />
-      <div
-        className="gap-x-6 gap-y-10 px-6 md:px-10 py-10 md:py-12"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-        }}
-      >
-        {secondary.map((article) => (
-          <ArticleCard key={article.slug} article={article} />
-        ))}
-      </div>
+      {/* ── §4.3 In This Issue: Magazine Contents Page ── */}
+      <InThisIssueContents />
 
-      {/* ── Editor note ── */}
-      <div className="h-px" style={{ background: "var(--rule)" }} />
-      <NotePanel
-        eyebrow="A NOTE FROM THE EDITOR IN CHIEF"
-        quote={siteConfig.editorNote}
-        attribution={siteConfig.editorAttribution}
-      />
-
-      {/* ── Director note ── */}
-      <div className="h-px" style={{ background: "var(--rule-soft)" }} />
-      <NotePanel
-        eyebrow="A NOTE FROM THE MARCOMS DIRECTOR"
-        quote={siteConfig.directorNote}
-        attribution={siteConfig.directorAttribution}
-      />
+      {/* ── Editorial Statements: Letters from the Editor & Director ── */}
+      <Container className="py-16 rule-t">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <EditorNote
+            eyebrow="A Note from the Editor in Chief"
+            quote={siteConfig.editorNote}
+            attribution={siteConfig.editorAttribution}
+          />
+          <EditorNote
+            eyebrow="A Note from the MARCOMS Director"
+            quote={siteConfig.directorNote}
+            attribution={siteConfig.directorAttribution}
+          />
+        </div>
+      </Container>
     </div>
   );
 }
-

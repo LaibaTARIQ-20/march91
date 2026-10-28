@@ -1,86 +1,74 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  getArticlesBySection,
-  sectionLabels,
-  type Section,
-} from "@/content/articles";
-import { ArticleCard } from "@/components/ArticleCard";
+import { sections, isSection, sectionLabel } from "@/content/sections";
+import ArticleGrid from "@/components/article/ArticleGrid";
+import Divider from "@/components/ui/Divider";
+import Container from "@/components/layout/Container";
+import { getArticlesBySection } from "@/lib/articles";
 import { siteConfig } from "@/content/site-config";
-
-const validSections = Object.keys(sectionLabels) as Section[];
+import type { Section } from "@/types";
 
 export function generateStaticParams() {
-  return validSections.map((section) => ({ section }));
+  return sections.map((s) => ({ section: s.slug }));
 }
 
-export default async function SectionPage({
-  params,
-}: {
-  params: Promise<{ section: string }>;
-}) {
+type Props = { params: Promise<{ section: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { section } = await params;
+  if (!isSection(section)) return {};
+  const label = sectionLabel(section as Section);
+  return {
+    title: label,
+    description: `${label} — ${siteConfig.issueLabel}`,
+  };
+}
+
+export default async function SectionPage({ params }: Props) {
   const { section } = await params;
 
-  if (!validSections.includes(section as Section)) {
+  if (!isSection(section)) {
     notFound();
   }
 
   const typedSection = section as Section;
-  const articles = getArticlesBySection(typedSection);
+  const articles = await getArticlesBySection(typedSection);
+  const label = sectionLabel(typedSection);
 
   return (
-    <div className="px-5 md:px-10 py-10 md:py-14">
-      <h1
-        className="text-4xl md:text-5xl font-bold mb-10 pb-6 border-b text-center"
-        style={{
-          fontFamily: "var(--font-body)",
-          color: "var(--navy)",
-          borderColor: "var(--rule)",
-        }}
-      >
-        {sectionLabels[typedSection]}
-      </h1>
+    <Container className="py-10 md:py-16">
+      <div className="text-center mb-8">
+        <h1 className="font-display text-4xl md:text-5xl font-bold text-navy mb-6">
+          {label}
+        </h1>
+        <Divider />
+      </div>
 
       {articles.length === 0 ? (
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p className="font-heading text-sm text-muted text-center py-12">
           Articles for this section are on the way.
         </p>
       ) : (
-        <div
-          className="gap-x-8 gap-y-12 mb-10"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
-        >
-          {articles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))}
-        </div>
+        <ArticleGrid articles={articles} columns={3} />
       )}
 
       {typedSection === "opinion" && (
-        <div
-          className="p-6 border text-center max-w-xl mx-auto"
-          style={{ borderColor: "var(--gold)" }}
-        >
-          <p
-            className="text-base font-bold mb-2"
-            style={{ fontFamily: "var(--font-body)", color: "var(--navy)" }}
-          >
+        <div className="p-8 border border-gold text-center max-w-xl mx-auto my-12 space-y-3">
+          <p className="font-display text-lg font-bold text-navy">
             Send in your word
           </p>
-          <p className="text-xs text-(--text-muted)">
-            Have an opinion piece?{" "}
-            <a
-              href={`mailto:${siteConfig.magazineEmail}`}
-              className="underline text-(--navy)"
-            >
-              Email your article
-            </a>{" "}
-            to the magazine for a chance to be featured.
+          <p className="font-heading text-xs text-muted">
+            Have an opinion piece or commentary to share with campus?
           </p>
+          <Link
+            href="/send-your-word"
+            className="inline-block font-heading text-xs font-semibold uppercase tracking-[0.14em] text-navy underline underline-offset-4 hover:opacity-80"
+          >
+            Submit your article &rarr;
+          </Link>
         </div>
       )}
-    </div>
+    </Container>
   );
 }

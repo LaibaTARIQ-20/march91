@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>March '91 — Homepage reference (layout spec only)</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&amp;family=Lexend:wght@300;400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F6F1E4;color:#4A4A46;font-family:'Lexend',sans-serif}
+a{color:inherit;text-decoration:none}a:hover{color:#735831}
+*{box-sizing:border-box}
+.pf{font-family:'Playfair Display',serif}
+.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#735831;font-weight:500}
+.by{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5C5C58}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+.rule{border-top:1px solid rgba(20,40,80,.15)}
+.ph{position:relative;display:flex;align-items:flex-end;padding:14px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(20,40,80,.7);overflow:hidden}
+.h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.02em;margin:0;color:#142850}
+.btn{display:inline-block;border:1px solid #142850;color:#142850;padding:14px 26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.btn:hover{background:#142850;color:#F6F1E4}
+.cv{opacity:0;animation:cv 20s infinite}@keyframes cv{0%{opacity:0;transform:scale(1.04)}5%,25%{opacity:1}30%{opacity:0;transform:scale(1)}100%{opacity:0}}.pb{transform-origin:left;animation:pb 5s linear infinite}@keyframes pb{from{transform:scaleX(0)}to{transform:scaleX(1)}}.qc{position:relative;min-height:330px}.qs{position:absolute;inset:0;opacity:0;display:flex;flex-direction:column;align-items:center;gap:26px}.q{font-style:italic;font-weight:500;font-size:clamp(26px,3.6vw,52px);line-height:1.18;color:#142850;max-width:1000px;margin:0;letter-spacing:-.01em}.qa{animation:qa 14s infinite}.qb{animation:qb 14s infinite}@keyframes qa{0%{opacity:0;transform:translateY(14px)}6%,44%{opacity:1;transform:none}50%,100%{opacity:0;transform:translateY(-14px)}}@keyframes qb{0%,50%{opacity:0;transform:translateY(14px)}56%,94%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}.dt{width:34px;height:3px;background:rgba(20,40,80,.2)}.da{animation:da 14s infinite}.db{animation:db 14s infinite}@keyframes da{0%,48%{background:#142850}50%,100%{background:rgba(20,40,80,.2)}}@keyframes db{0%,48%{background:rgba(20,40,80,.2)}50%,98%{background:#142850}100%{background:rgba(20,40,80,.2)}}@media(max-width:820px){.qc{min-height:460px}}
+.mq{display:flex;gap:56px;white-space:nowrap;animation:mq 40s linear infinite;width:max-content}
+@keyframes mq{to{transform:translateX(-50%)}}
+.num{font-family:'Playfair Display',serif;font-weight:900;font-size:72px;line-height:1;color:transparent;-webkit-text-stroke:1.5px #142850}
+.toc-i{display:grid;grid-template-columns:96px minmax(0,1fr) minmax(0,1.3fr) auto;align-items:center;gap:22px;padding:22px 0;border-top:1px solid rgba(20,40,80,.15)}.toc-i:hover{background:#EAE3D2}.row{display:grid;grid-template-columns:110px 220px 1fr 40px;align-items:center;gap:24px;padding:22px 0;border-top:1px solid rgba(20,40,80,.15)}
+.row:hover{background:#EAE3D2}
+.shm{display:flex;gap:20px;width:max-content;padding-right:20px;animation:shm 45s linear infinite}.shm:hover{animation-play-state:paused}@keyframes shm{to{transform:translateX(-50%)}}.sh{flex:0 0 220px;aspect-ratio:9/16}
+@media(max-width:820px){.toc-i{grid-template-columns:72px 1fr}.toc-i>span:last-child{display:none}.g2,.g3,.g5,.cl,.cover,.feat,.split,.watch,.boxd{grid-template-columns:1fr!important}.row{grid-template-columns:70px 1fr}.row .hide{display:none}.nv{display:none!important}.edit>*{margin-top:0!important}.wrap{padding:0 20px}}
+</style>
+
+</head><body>
+
+
+<div style="background:#F6F1E4">
+<!-- top bar + masthead -->
+
+<div style="text-align:center;padding:34px 0 22px"><h1 class="pf" style="margin:0;font-size:clamp(48px,7vw,104px);font-weight:900;letter-spacing:-.03em;line-height:1;color:#142850">March ’91</h1></div>
+<nav class="rule nv" style="border-bottom:1px solid rgba(20,40,80,.15);display:flex;justify-content:center;gap:40px;padding:16px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#142850;position:sticky;top:0;background:#F6F1E4;z-index:5"><a href="#">Samaj</a><a href="#">Karobaar</a><a href="#">NUST Box'd</a><a href="#">Lifestyle</a><a href="#">Opinion</a><a href="#">Sports</a><span style="opacity:.3">|</span><a href="#">Videos</a><a href="#">Archive</a></nav>
+
+<!-- 1. COVER -->
+<section class="cover" style="display:grid;grid-template-columns:5fr 7fr;min-height:760px">
+<div style="padding:80px 56px 56px 64px;display:flex;flex-direction:column;justify-content:space-between">
+<div><span class="k">NUST Fall '26 · Cover Story</span>
+<h2 class="pf" style="font-size:clamp(52px,6.4vw,104px);font-weight:900;line-height:.95;letter-spacing:-.025em;margin:24px 0 20px;color:#142850">We’re all wearing <em style="font-weight:500;color:#735831">terry</em> this fall.</h2>
+<p class="pf" style="font-style:italic;font-size:22px;margin:0 0 32px;color:#4A4A46">Pastels, charm &amp; literacy.</p>
+<a class="btn" href="#">Read the issue →</a></div>
+<div style="margin-top:40px;height:2px;background:rgba(20,40,80,.15);position:relative;overflow:hidden"><span class="pb" style="position:absolute;left:0;top:0;height:2px;width:100%;background:#142850"></span></div>
+</div>
+<div class="cl" style="display:grid;grid-template-columns:1fr 240px;gap:36px;padding:0 48px 48px 0;align-items:stretch">
+<div style="position:relative;min-height:620px;overflow:hidden"><div class="ph cv" style="position:absolute;inset:0;background:#EAE3D2;animation-delay:0s">Fall ’26 cover 1 photograph</div><div class="ph cv" style="position:absolute;inset:0;background:#EAE3D2;animation-delay:5s">Fall ’26 cover 2 photograph</div><div class="ph cv" style="position:absolute;inset:0;background:#EAE3D2;animation-delay:10s">Fall ’26 cover 3 photograph</div><div class="ph cv" style="position:absolute;inset:0;background:#EAE3D2;animation-delay:15s">Fall ’26 cover 4 photograph</div></div>
+<div style="display:flex;flex-direction:column;justify-content:flex-end;gap:0">
+<span class="k" style="color:#142850;padding-bottom:14px">Also in this issue</span>
+<a href="#" class="rule" style="padding:18px 0 22px"><span class="k" style="display:block;margin-bottom:8px">Sports</span><span class="pf" style="font-size:21px;line-height:1.15;font-weight:700;color:#142850">Why Even Do Sports?</span></a>
+<a href="#" class="rule" style="padding:18px 0 22px"><span class="k" style="display:block;margin-bottom:8px">Karobaar</span><span class="pf" style="font-size:21px;line-height:1.15;font-weight:700;color:#142850">Mom, I Don’t Need an Internship. My GPA is 3.8</span></a>
+<a href="#" class="rule" style="padding:18px 0 22px"><span class="k" style="display:block;margin-bottom:8px">NUST Box’d</span><span class="pf" style="font-size:21px;line-height:1.15;font-weight:700;color:#142850">What exactly is film for?</span></a>
+</div>
+</div>
+</section>
+
+<!-- 2. TICKER -->
+<div style="background:#142850;color:#F6F1E4;overflow:hidden;padding:15px 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase">
+<div class="mq"><span style="color:#735831">● Start the day here</span><span>Submissions open for Issue No. 2: Winter Essays, Photo Stories &amp; Poetry</span><span>Weekly NUST News: October Issue &amp; Campus Scoop</span><span>Inside the NUST Community Service Club (NCSC)</span><span style="color:#735831">● Start the day here</span><span>Submissions open for Issue No. 2: Winter Essays, Photo Stories &amp; Poetry</span><span>Weekly NUST News: October Issue &amp; Campus Scoop</span><span>Inside the NUST Community Service Club (NCSC)</span></div></div>
+
+<!-- 3. IN THIS ISSUE -->
+<section class="wrap" style="padding-top:110px;padding-bottom:110px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px"><h2 class="h2">In <em style="font-weight:500">this</em> issue</h2><span class="by">Issue No. 1 · Fall 2026</span></div>
+<div class="g2 toc" style="display:grid;grid-template-columns:1fr 1fr;column-gap:72px">
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">Samaj</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">This happened. We watched. You’re reading.</span><span class="k" style="justify-self:end">Read →</span></a>
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">Karobaar</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">Mom, I Don’t Need an Internship. My GPA is 3.8</span><span class="k" style="justify-self:end">Read →</span></a>
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">NUST Box’d</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">What exactly is film for?</span><span class="k" style="justify-self:end">Read →</span></a>
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">Lifestyle</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">How to wear yourself: A necessary reminder before fall</span><span class="k" style="justify-self:end">Read →</span></a>
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">Opinion</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">Why students prefer torture over teamwork</span><span class="k" style="justify-self:end">Read →</span></a>
+<a href="#" class="toc-i"><div class="ph" style="aspect-ratio:3/4;padding:0;background:#EAE3D2"></div><span class="pf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3.2vw,46px);line-height:1;color:#142850">Sports</span><span style="font-size:14px;line-height:1.5;color:#4A4A46;max-width:380px">Why Even Do Sports?</span><span class="k" style="justify-self:end">Read →</span></a>
+</div>
+</section>
+
+<!-- 4. FEATURE SPREAD -->
+<section class="wrap feat" style="display:grid;grid-template-columns:7fr 5fr;gap:0;align-items:center;padding-bottom:120px">
+<div class="ph" style="aspect-ratio:4/5;background:#EAE3D2;">Samaj · event photograph</div>
+<div style="background:#F6F1E4;margin-left:-90px;padding:48px 0 48px 48px;position:relative"><span class="k">Samaj · Feature</span>
+<h2 class="pf" style="font-size:clamp(40px,4.6vw,68px);font-weight:900;line-height:1;letter-spacing:-.02em;margin:20px 0 28px;color:#142850">This happened. <em style="font-weight:500">We watched.</em> You’re reading.</h2>
+<a class="btn" href="#">Read the story →</a></div>
+</section>
+
+<!-- 5. THE EDIT -->
+<section class="wrap" style="padding-bottom:120px"><div class="rule" style="padding-top:28px;margin-bottom:48px;display:flex;justify-content:space-between"><h2 class="h2" style="font-size:clamp(32px,3.6vw,52px)">The Edit</h2><span class="by" style="align-self:center">Three stories worth your evening</span></div>
+<div class="g3 edit" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+<a href="#"><div class="ph" style="aspect-ratio:3/4;background:#EAE3D2">Samaj</div><span class="k" style="display:block;margin-top:16px">Samaj</span><h3 class="pf" style="font-size:28px;margin:8px 0;color:#142850;line-height:1.1">Before the chaos begins</h3></a>
+<a href="#" style="margin-top:80px"><div class="ph" style="aspect-ratio:4/5;background:#EAE3D2">Karobaar</div><span class="k" style="display:block;margin-top:16px">Karobaar</span><h3 class="pf" style="font-size:28px;margin:8px 0;color:#142850;line-height:1.1">Karobaar: Navigating Innovation, Enterprise, and Opportunity</h3><span class="by">By Sarim Khan Lodhi</span></a>
+<a href="#" style="margin-top:30px"><div class="ph" style="aspect-ratio:3/4;background:#EAE3D2">Opinion</div><span class="k" style="display:block;margin-top:16px">Opinion</span><h3 class="pf" style="font-size:28px;margin:8px 0;color:#142850;line-height:1.1">Why students prefer torture over teamwork</h3><span class="by">By Sarah Rameen Qureshi</span></a>
+</div></section>
+
+<!-- 6. SHORTS -->
+<section style="background:#EAE3D2;padding:90px 0 90px">
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px"><h2 class="h2">March ’91 <em style="font-weight:500">Shorts</em></h2><a class="btn" href="#">Follow on Instagram →</a></div>
+<div style="overflow:hidden;padding:0 0 10px"><div class="shm">
+<a href="#" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Weekly NUST News: October Issue &amp; Campus Scoop</span></a>
+<a href="#" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">The Beginning of Your Weekly NUST News Download</span></a>
+<a href="#" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Inside the NUST Community Service Club (NCSC)</span></a>
+<a href="#" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Ranking NUST Cafeterias: One Dish at a Time</span></a>
+<a href="#" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">S3H Film Circle: Letterboxd Lore &amp; Dorm Watch Parties</span></a>
+
+<a href="#" aria-hidden="true" tabindex="-1" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Weekly NUST News: October Issue &amp; Campus Scoop</span></a>
+<a href="#" aria-hidden="true" tabindex="-1" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">The Beginning of Your Weekly NUST News Download</span></a>
+<a href="#" aria-hidden="true" tabindex="-1" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Inside the NUST Community Service Club (NCSC)</span></a>
+<a href="#" aria-hidden="true" tabindex="-1" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">Ranking NUST Cafeterias: One Dish at a Time</span></a>
+<a href="#" aria-hidden="true" tabindex="-1" class="sh ph" style="background:#EAE3D2;flex-direction:column;justify-content:space-between"><span style="font-size:18px">▶</span><span class="pf" style="font-size:19px;letter-spacing:0;text-transform:none;color:#142850;line-height:1.15">S3H Film Circle: Letterboxd Lore &amp; Dorm Watch Parties</span></a>
+</div></div></section></div>
+
+<!-- 7. STYLE & CAMPUS LIFE -->
+<section class="wrap" style="padding-top:110px;padding-bottom:110px">
+<div style="margin-bottom:44px"><span class="k">Lifestyle</span><h2 class="h2" style="margin-top:10px">Style &amp; <em style="font-weight:500">Campus Life</em></h2></div>
+<div class="split" style="display:grid;grid-template-columns:1.35fr 1fr;gap:56px">
+<a href="#"><div class="ph" style="aspect-ratio:4/5;background:#EAE3D2">Lifestyle cover photograph</div><h3 class="pf" style="font-size:40px;line-height:1.05;margin:20px 0 8px;color:#142850">Semester is in Session: It’s Pen and Paper Again</h3><span class="by">By March ’91 Style Desk</span></a>
+<div style="display:flex;flex-direction:column">
+<a href="#" style="display:grid;grid-template-columns:130px 1fr;gap:20px;padding:0 0 24px"><div class="ph" style="aspect-ratio:1;background:#EAE3D2"></div><div><span class="k">Lifestyle</span><h3 class="pf" style="font-size:24px;margin:8px 0;color:#142850;line-height:1.1">How to wear yourself: A necessary reminder before fall</h3><span class="by">By Sarah Rameen Qureshi</span></div></a>
+<a href="#" class="rule" style="display:grid;grid-template-columns:130px 1fr;gap:20px;padding:24px 0"><div class="ph" style="aspect-ratio:1;background:#EAE3D2"></div><div><span class="k">Lifestyle</span><h3 class="pf" style="font-size:24px;margin:8px 0;color:#142850;line-height:1.1">A Glamorous Junkyard</h3><span class="by">By Faiza Majeed</span></div></a>
+<a href="#" class="rule" style="display:grid;grid-template-columns:130px 1fr;gap:20px;padding:24px 0"><div class="ph" style="aspect-ratio:1;background:#EAE3D2"></div><div><span class="k">Lifestyle</span><h3 class="pf" style="font-size:24px;margin:8px 0;color:#142850;line-height:1.1">The Unedited Life</h3></div></a>
+<a href="#" class="rule" style="display:grid;grid-template-columns:130px 1fr;gap:20px;padding:24px 0"><div class="ph" style="aspect-ratio:1;background:#EAE3D2"></div><div><span class="k">Lifestyle</span><h3 class="pf" style="font-size:24px;margin:8px 0;color:#142850;line-height:1.1">Living a Double Life (or Multiple Lives)</h3></div></a>
+</div></div></section>
+
+<!-- 8. WATCH & LISTEN -->
+<section style="background:#142850;color:#F6F1E4;padding:100px 0">
+<div class="wrap"><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px"><h2 class="h2" style="color:#F6F1E4">Watch &amp; <em style="font-weight:500">Listen</em></h2><a href="#" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid #F6F1E4;padding-bottom:4px">All videos →</a></div>
+<div class="watch" style="display:grid;grid-template-columns:1.6fr 1fr;gap:48px">
+<div><div class="ph" style="aspect-ratio:16/9;background:#EAE3D2;align-items:center;justify-content:center"><span style="width:84px;height:84px;border-radius:50%;border:1.5px solid #F6F1E4;display:flex;align-items:center;justify-content:center;font-size:26px;color:#F6F1E4">▶</span></div><h3 class="pf" style="font-size:36px;margin:22px 0 0;line-height:1.05">Weekly NUST News: October Issue &amp; Campus Scoop</h3></div>
+<div style="display:flex;flex-direction:column;justify-content:space-between">
+<a href="#" style="display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(246,241,228,.18)"><div class="ph" style="aspect-ratio:16/9;background:#EAE3D2"></div><span class="pf" style="font-size:19px;line-height:1.15">The Beginning of Your Weekly NUST News Download</span></a>
+<a href="#" style="display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(246,241,228,.18)"><div class="ph" style="aspect-ratio:16/9;background:#EAE3D2"></div><span class="pf" style="font-size:19px;line-height:1.15">Inside the NUST Community Service Club (NCSC)</span></a>
+<a href="#" style="display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(246,241,228,.18)"><div class="ph" style="aspect-ratio:16/9;background:#EAE3D2"></div><span class="pf" style="font-size:19px;line-height:1.15">Ranking NUST Cafeterias: One Dish at a Time</span></a>
+<a href="#" style="display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center"><div class="ph" style="aspect-ratio:16/9;background:#EAE3D2"></div><span class="pf" style="font-size:19px;line-height:1.15">S3H Film Circle: Letterboxd Lore &amp; Dorm Watch Parties</span></a>
+</div></div></div></section>
+
+<!-- 9. BOX'D SHELF -->
+<section class="wrap boxd" style="display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center;padding-top:120px;padding-bottom:120px">
+<div><span class="k">Culture</span><h2 class="h2" style="margin:12px 0 24px">NUST <em style="font-weight:500">Box’d</em></h2><p class="pf" style="font-style:italic;font-size:22px;line-height:1.4;margin:0 0 28px;color:#4A4A46">The critics’ shelf.</p><a class="btn" href="#">Browse the shelf →</a></div>
+<div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:32px"><a href="#"><div class="ph" style="aspect-ratio:2/3;background:#EAE3D2">Film poster</div><h3 class="pf" style="font-size:24px;margin:16px 0 6px;color:#142850">NUST Box’d</h3><span class="by">By Hadeed</span></a><a href="#" style="margin-top:56px"><div class="ph" style="aspect-ratio:2/3;background:#EAE3D2">Film poster</div><h3 class="pf" style="font-size:24px;margin:16px 0 6px;color:#142850">What exactly is film for?</h3><span class="by">By Hadeed Bashir</span></a></div>
+</section>
+
+<!-- 10. QUOTES CAROUSEL -->
+<section style="background:#EAE3D2;padding:110px 0 90px;text-align:center"><div class="wrap">
+<div class="qc"><div class="qs qa"><span class="k">A note from the MARCOMS Director</span><p class="pf q">“March ’91 is proof of what student-led storytelling can look like when it’s given real space to grow.”</p><span class="by">— MARCOMS Director</span></div>
+<div class="qs qb"><span class="k">A note from the Editor in Chief</span><p class="pf q">“Every issue of March ’91 starts the same way: a group of students who think they have a story worth telling, and the stubbornness to see it through.”</p><span class="by">— Editor in Chief</span></div></div>
+<div style="display:flex;justify-content:center;gap:10px;margin-top:40px"><span class="dt da"></span><span class="dt db"></span></div>
+</div></section>
+
+<!-- 12. EDITOR'S LETTER + CTA -->
+<section class="rule" style="padding:110px 0 100px;text-align:center"><div class="wrap"><h2 class="h2" style="font-size:clamp(40px,5.6vw,84px)">Got a story worth <em style="font-weight:500;color:#735831">telling?</em></h2><div style="margin-top:36px"><a class="btn" href="#" style="background:#142850;color:#F6F1E4">Send your word →</a></div></div></section>
+
+<!-- 13. FOOTER -->
+<footer style="background:#142850;color:#F6F1E4;padding:80px 0 0">
+<div class="wrap g3" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px">
+<div><div class="pf" style="font-size:30px;font-weight:700">March ’91</div><p style="font-size:13px;line-height:1.6;color:#EAE3D2;max-width:260px">The student magazine of MARCOMS, NUST Islamabad.</p></div>
+<div style="font-size:14px;line-height:2"><span class="k" style="color:#EAE3D2">Sections</span><br>Samaj<br>Karobaar<br>NUST Box’d<br>Lifestyle<br>Opinion<br>Sports</div>
+<div style="font-size:14px;line-height:2"><span class="k" style="color:#EAE3D2">About</span><br>About March ’91<br>Archive<br>Noticeboard<br>Videos<br>Send Your Word</div>
+<div style="font-size:14px;line-height:2"><span class="k" style="color:#EAE3D2">Connect</span><br>Instagram<br>march91.magazine@gmail.com</div></div>
+<div class="pf" style="font-weight:900;font-size:clamp(56px,14.5vw,240px);line-height:1;letter-spacing:-.03em;text-align:center;white-space:nowrap;color:#F6F1E4;padding:0 20px 24px">MARCH’91</div>
+<div class="wrap" style="display:flex;justify-content:space-between;padding-top:34px;padding-bottom:24px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#EAE3D2;position:relative;z-index:1;background:#142850"><span>Issue No. 1 · Fall 2026 · © 2026 March ’91 · NUST, Islamabad</span><span>A MARCOMS NUST Publication</span></div>
+</footer>
+
+
+</body></html>
