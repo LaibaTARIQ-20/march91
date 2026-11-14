@@ -12,7 +12,7 @@ type StyleCampusLifeProps = {
 
 export default function StyleCampusLife({ lead, list }: StyleCampusLifeProps) {
   return (
-    <section className="py-[110px]" aria-label="Style & Campus Life">
+    <section className="py-16 desk:py-24" aria-label="Style & Campus Life">
       <Wrap>
         {/* Header: kicker "Lifestyle" and h2 (margin-top 10px), margin-bottom 44px */}
         <div className="mb-11">

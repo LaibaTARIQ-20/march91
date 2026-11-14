@@ -1,22 +1,29 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Wrap from "@/components/ui/Wrap";
 import Reveal from "@/components/ui/Reveal";
-import VideoPlayer from "@/components/ui/VideoPlayer";
-import type { Video } from "@/types";
+import videosData from "@/data/videos.json";
 
-type WatchListenProps = {
-  videos: Video[];
-  showPlaceholders: boolean;
+type VideoItem = {
+  title: string;
+  file: string;
+  poster: string | null;
+  date: string | null;
 };
 
-export default function WatchListen({ videos, showPlaceholders }: WatchListenProps) {
-  const primaryVideo = videos[0];
-  const sideVideos = videos.slice(1);
-  const sideSlotsCount = 4;
-  const missingCount = sideSlotsCount - sideVideos.length;
+type WatchListenProps = {
+  videos?: unknown;
+  showPlaceholders?: boolean;
+};
+
+export default function WatchListen({}: WatchListenProps = {}) {
+  const [activeVideo, setActiveVideo] = useState<VideoItem>(videosData[0]);
+  const sideVideos = videosData.filter((v) => v.file !== activeVideo?.file);
 
   return (
-    <section className="bg-navy text-cream py-[100px]" aria-label="Watch & Listen">
+    <section className="bg-navy text-cream py-16 desk:py-24" aria-label="Watch & Listen">
       <Wrap>
         {/* Header: h2 cream left, "All videos →" right */}
         <div className="flex justify-between items-end mb-11">
@@ -33,73 +40,66 @@ export default function WatchListen({ videos, showPlaceholders }: WatchListenPro
           </Link>
         </div>
 
-        {/* Grid 1.6fr / 1fr, gap 48px */}
-        <div className="grid grid-cols-1 desk:grid-cols-[1.6fr_1fr] gap-12">
-          {/* Left: Primary video */}
-          <div>
-            {primaryVideo ? (
-              <>
-                <VideoPlayer
-                  poster={primaryVideo.poster}
-                  title={primaryVideo.title}
-                  src={primaryVideo.src}
-                  youtubeId={primaryVideo.youtubeId}
-                />
-                <h3 className="font-display font-bold text-[36px] leading-[1.05] text-cream mt-[22px]">
-                  {primaryVideo.title}
-                </h3>
-              </>
-            ) : (
-              <div className="aspect-video bg-navy border border-cream/20 flex flex-col items-center justify-center p-6 text-center">
-                <span className="text-3xl text-cream/40 mb-3">▶</span>
-                <p className="font-display text-xl text-cream/60">Coming soon</p>
+        {/* Desktop: 60/40 split with 48px gap (gap-12). Mobile: stacked */}
+        <div className="grid grid-cols-1 lg:grid-cols-[60%_calc(40%-3rem)] gap-12 items-start">
+          {/* Left: Main player (60% on desktop) */}
+          <div className="w-full flex flex-col">
+            {activeVideo ? (
+              <div className="w-full aspect-video bg-navy overflow-hidden border border-cream/20 rounded-none">
+                <video
+                  key={activeVideo.file}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={activeVideo.poster ?? undefined}
+                  className="w-full h-full object-cover"
+                >
+                  <source src={activeVideo.file} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
+            ) : null}
+            {activeVideo?.title && (
+              <h3 className="font-display font-bold text-[24px] sm:text-[30px] leading-[1.1] text-cream mt-4">
+                {activeVideo.title}
+              </h3>
             )}
           </div>
 
-          {/* Right: Side video rows */}
-          <div className="flex flex-col justify-between gap-5 desk:gap-0">
-            {/* Real side videos */}
-            {sideVideos.map((video) => (
-              <div
-                key={video.id}
-                className="grid grid-cols-[150px_1fr] gap-[18px] items-center pb-5 border-b border-cream/[0.18]"
-              >
-                <div className="relative aspect-video bg-cream-dark overflow-hidden">
-                  <VideoPlayer
-                    poster={video.poster}
-                    title={video.title}
-                    src={video.src}
-                    youtubeId={video.youtubeId}
-                  />
-                </div>
-                <h4 className="font-display text-[19px] leading-[1.15] text-cream">
-                  {video.title}
-                </h4>
-              </div>
-            ))}
-
-            {/* Ghost rows if fewer than 4 and showPlaceholders is true */}
-            {showPlaceholders &&
-              Array.from({ length: Math.max(0, missingCount) }).map((_, idx) => {
-                const isLast = idx === missingCount - 1;
-                return (
-                  <div
-                    key={`ghost-video-${idx}`}
-                    className={`grid grid-cols-[150px_1fr] gap-[18px] items-center pb-5 select-none ${
-                      isLast ? "" : "border-b border-cream/[0.18]"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <div className="aspect-video border border-cream/20 bg-cream/5 flex items-center justify-center">
-                      <span className="text-cream/30 text-sm">▶</span>
-                    </div>
-                    <span className="font-display text-[19px] leading-[1.15] text-cream/60">
-                      Coming soon
+          {/* Right: List (40% on desktop) */}
+          <div className="flex flex-col justify-start gap-5 w-full">
+            {sideVideos.length > 0 ? (
+              sideVideos.map((video, idx) => (
+                <button
+                  key={`${video.file}-${idx}`}
+                  type="button"
+                  onClick={() => setActiveVideo(video)}
+                  className="grid grid-cols-[160px_1fr] gap-4 items-center pb-5 border-b border-cream/[0.18] text-left cursor-pointer group focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+                >
+                  <div className="relative aspect-video bg-navy overflow-hidden border border-cream/20 rounded-none flex items-center justify-center shrink-0">
+                    <span className="text-[20px] text-cream/70 leading-none group-hover:text-gold-text transition-colors" aria-hidden="true">
+                      ▶
                     </span>
                   </div>
-                );
-              })}
+                  <div className="flex flex-col min-w-0">
+                    {video.date && (
+                      <span className="font-body text-xs uppercase tracking-wider text-gold-text mb-1 block">
+                        {video.date}
+                      </span>
+                    )}
+                    <h4 className="font-display text-[18px] sm:text-[20px] leading-[1.2] text-cream group-hover:text-gold-text transition-colors line-clamp-2">
+                      {video.title}
+                    </h4>
+                  </div>
+                </button>
+              ))
+            ) : (
+              <div className="py-6 border-t border-cream/[0.18]">
+                <p className="font-body text-cream text-[16px] leading-relaxed m-0">
+                  More interviews coming soon.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Wrap>

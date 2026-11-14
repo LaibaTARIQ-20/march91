@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function NoticeboardPage() {
   return (
-    <Container className="py-12 md:py-20">
+    <Container className="py-16 desk:py-24">
       <div className="text-center mb-12">
         <h1 className="font-display font-bold text-4xl md:text-5xl text-navy mb-6">
           Noticeboard

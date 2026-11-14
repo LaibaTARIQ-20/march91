@@ -36,10 +36,19 @@ export default function Reveal({
   useEffect(() => {
     if (prefersReducedMotion) return;
 
+    // If element is already in viewport on mount, show immediately (no flash)
+    if (domRef.current) {
+      const rect = domRef.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100) {
+        setIsVisible(true);
+        return;
+      }
+    }
+
     // Safety fallback so content is never permanently hidden if observer is delayed or blocked
     const fallbackTimer = setTimeout(() => {
       setIsVisible(true);
-    }, 1200 + delay);
+    }, 600 + delay);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,7 +62,7 @@ export default function Reveal({
           }
         });
       },
-      { threshold: 0.05, rootMargin: "50px" }
+      { threshold: 0.05, rootMargin: "80px" }
     );
 
     const currentRef = domRef.current;

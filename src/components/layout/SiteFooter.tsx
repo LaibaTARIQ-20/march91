@@ -3,23 +3,14 @@ import { sections } from "@/content/sections";
 import { siteConfig } from "@/content/site-config";
 import Container from "@/components/layout/Container";
 
-/**
- * Footer per docs/DESIGN-SPEC.md section 14:
- * Navy bg, cream text, padding-top 80px.
- * Grid: 1.4fr / 1fr / 1fr / 1fr, gap 40px, padding-bottom 70px.
- * Column heads: kicker style (cream-dark), links 14px line-height 2.
- * Giant wordmark: Playfair 900, clamp(56px,14.5vw,240px), cream, centred.
- * Bottom bar: 11px uppercase tracking .12em, cream-dark.
- * Logo text, tagline and credit come from siteConfig (not the mockup).
- */
 export default function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-navy text-cream pt-20">
       <Container>
-        {/* Four columns: 1.4fr 1fr 1fr 1fr */}
-        <div className="grid grid-cols-1 desk:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-17.5">
+        {/* Four columns: 1 per row with 24px gap on mobile, 4 columns from desk */}
+        <div className="grid grid-cols-1 desk:grid-cols-[1.4fr_1fr_1fr_1fr] gap-6 desk:gap-10 pb-12 desk:pb-17.5">
 
           {/* Column 1: Brand */}
           <div>
@@ -134,9 +125,9 @@ export default function SiteFooter() {
         </div>
       </Container>
 
-      {/* Bottom bar directly under columns with cream 18% hairline */}
+      {/* Bottom bar directly under columns with cream 18% hairline - stacks on mobile */}
       <div className="border-t border-cream/18">
-        <Container className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-8.5 pb-6 text-[11px] uppercase tracking-[0.12em] text-cream-dark font-body">
+        <Container className="flex flex-col desk:flex-row justify-between items-start desk:items-center gap-2 pt-8.5 pb-6 text-[11px] uppercase tracking-[0.12em] text-cream-dark font-body">
           <span>
             {siteConfig.issueLabel} &middot; &copy; {year} March &#8217;91 &middot; NUST, Islamabad
           </span>

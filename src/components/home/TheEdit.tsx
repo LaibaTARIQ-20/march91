@@ -12,11 +12,8 @@ type TheEditProps = {
 };
 
 export default function TheEdit({ articles, tagline }: TheEditProps) {
-  const offsetClasses = ["desk:mt-0", "desk:mt-[80px]", "desk:mt-[30px]"];
-  const aspectClasses = ["aspect-3/4", "aspect-4/5", "aspect-3/4"];
-
   return (
-    <section className="py-12 desk:pb-[120px]" aria-label="The Edit">
+    <section className="py-16 desk:py-24" aria-label="The Edit">
       <Wrap>
         {/* Header: hairline on top, padding-top 28px, margin-bottom 48px */}
         <div className="rule pt-7 mb-12 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
@@ -30,36 +27,38 @@ export default function TheEdit({ articles, tagline }: TheEditProps) {
           </span>
         </div>
 
-        {/* 3 columns grid, gap 40px with 100ms staggered up reveals */}
-        <div className="grid grid-cols-1 desk:grid-cols-3 gap-10">
+        {/* Three columns on desktop, two on tablet, one on mobile.
+            Gap between cards: 24px on desktop, 16px on mobile. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {articles.map((article, idx) => {
             const sectionName = sectionLabel(article.section as Section);
-            const offset = offsetClasses[idx] || "desk:mt-0";
-            const aspect = aspectClasses[idx] || "aspect-3/4";
 
             return (
-              <Reveal key={article.slug} variant="up" delay={idx * 100} className={offset}>
+              <Reveal key={article.slug} variant="up" delay={idx * 100}>
                 <Link
                   href={`/${article.section}/${article.slug}`}
-                  className="group block"
+                  className="group block p-0 rounded-none"
                 >
-                  <ImageFrame className={`${aspect} bg-cream-dark border border-line/40`}>
+                  {/* Image aspect ratio 4:5 on all cards. object-fit cover. Card padding: 0. Border radius: 0. */}
+                  <ImageFrame className="aspect-4/5 bg-cream-dark border border-line/40 rounded-none p-0">
                     {article.heroImage ? (
                       <Image
                         src={article.heroImage}
                         alt={article.title}
                         fill
-                        sizes="(max-width: 820px) 100vw, 33vw"
-                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover rounded-none"
                       />
                     ) : null}
                   </ImageFrame>
 
-                  <span className="kicker block mt-4 transition-colors group-hover:text-navy">
+                  {/* 12px between image and category label (mt-3) */}
+                  <span className="kicker block mt-3 transition-colors group-hover:text-navy">
                     {sectionName}
                   </span>
 
-                  <h3 className="font-display text-[28px] leading-[1.1] text-navy my-2 link-sweep inline-block group-hover:text-navy transition-colors">
+                  {/* 8px between label and title (mt-2) */}
+                  <h3 className="font-display text-[28px] leading-[1.1] text-navy mt-2 mb-2 link-sweep inline-block group-hover:text-navy transition-colors">
                     {article.title}
                   </h3>
 

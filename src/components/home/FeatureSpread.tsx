@@ -14,11 +14,11 @@ export default function FeatureSpread({ article }: FeatureSpreadProps) {
   const sectionName = sectionLabel(article.section as Section);
 
   return (
-    <section className="py-12 desk:pb-[120px]" aria-label="Feature spread">
+    <section className="py-16 desk:py-24" aria-label="Feature spread">
       <Wrap>
         <div className="grid grid-cols-1 desk:grid-cols-[7fr_5fr] items-center gap-0">
-          {/* Image 4:5 with clip reveal */}
-          <Reveal variant="clip" className="w-full">
+          {/* Image 4:5 with fade-up reveal */}
+          <Reveal variant="up" className="w-full">
             <ImageFrame showChip={false} className="aspect-4/5 bg-cream-dark">
               {article.heroImage ? (
                 <Image

@@ -5,7 +5,7 @@ import ButtonLink from "@/components/ui/ButtonLink";
 
 export default function NotFound() {
   return (
-    <Container className="py-16 md:py-28 text-center">
+    <Container className="py-16 desk:py-24 text-center">
       <div className="max-w-xl mx-auto space-y-8">
         <h1 className="font-display font-bold text-4xl md:text-6xl text-navy">
           404 &mdash; Page Not Found

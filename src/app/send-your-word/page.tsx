@@ -14,7 +14,7 @@ export default function SendYourWordPage() {
   )}`;
 
   return (
-    <Container className="py-12 md:py-20">
+    <Container className="py-16 desk:py-24">
       <div className="max-w-2xl mx-auto text-center space-y-8">
         <h1 className="font-display font-bold text-4xl md:text-5xl text-navy">
           Send Your Word

@@ -36,12 +36,12 @@ export default function ArticleCardFeatured({
           <div className="w-full aspect-4/3 bg-cream-dark" />
         )}
 
-        <div className="space-y-3">
+        <div className="flex flex-col">
           <Rubric label={label} />
-          <h3 className="font-display font-bold text-2xl md:text-3xl text-navy group-hover:underline underline-offset-4 leading-tight">
+          <h3 className="font-display font-bold text-2xl md:text-3xl text-navy group-hover:underline underline-offset-4 leading-[1.1] mt-3">
             {article.title}
           </h3>
-          <p className="font-body text-base text-ink leading-relaxed">
+          <p className="font-body text-base text-ink leading-[1.6] mt-2 mb-3">
             {article.excerpt}
           </p>
           {article.author && <Byline author={article.author} />}

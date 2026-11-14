@@ -1,6 +1,6 @@
 /**
  * Wrap — alias for Container.
- * Max-width 1320px, 20px padding mobile, 40px from desk breakpoint (821px).
+ * Max-width 1200px, 16px mobile, 24px tablet, 48px desktop.
  */
 export { default } from "@/components/layout/Container";
 

@@ -11,7 +11,6 @@ type VideoPlayerProps = {
   className?: string;
   priority?: boolean;
 };
-
 export default function VideoPlayer({
   poster,
   title,

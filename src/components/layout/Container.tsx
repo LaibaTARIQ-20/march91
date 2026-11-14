@@ -8,7 +8,7 @@ type ContainerProps = {
 };
 
 /**
- * Centered layout container — max-w 1320px, 20px on mobile, 40px from md.
+ * Centered layout container — max-w 1200px, 16px on mobile, 24px on tablet, 48px on desktop.
  */
 export default function Container({
   children,
@@ -17,7 +17,7 @@ export default function Container({
   id,
 }: ContainerProps) {
   return (
-    <Tag id={id} className={cn("mx-auto w-full max-w-330 px-5 desk:px-10", className)}>
+    <Tag id={id} className={cn("mx-auto w-full max-w-[1200px] px-4 sm:px-6 desk:px-12", className)}>
       {children}
     </Tag>
   );

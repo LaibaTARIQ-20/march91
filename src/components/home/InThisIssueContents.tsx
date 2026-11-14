@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/content/site-config";
-import { sectionLabel, type Section } from "@/content/sections";
 import type { Article } from "@/types";
 import Wrap from "@/components/ui/Wrap";
 import Reveal from "@/components/ui/Reveal";
@@ -13,13 +12,13 @@ type InThisIssueContentsProps = {
 
 export default function InThisIssueContents({ articles }: InThisIssueContentsProps) {
   return (
-    <section className="py-[110px]" aria-label="In this issue">
+    <section className="py-16 desk:py-24" aria-label="In this issue">
       <Wrap>
         {/* Header row: h2 left, issue label right */}
         <div className="flex justify-between items-end mb-10 pb-4 border-b border-line">
           <Reveal variant="mask">
             <h2 className="h2 font-display font-black text-navy">
-              In <em className="font-medium italic">this</em> issue
+              Latest Stories
             </h2>
           </Reveal>
           <span className="byline text-muted">
@@ -27,17 +26,16 @@ export default function InThisIssueContents({ articles }: InThisIssueContentsPro
           </span>
         </div>
 
-        {/* 2 columns grid on desktop, 1 on mobile */}
-        <div className="grid grid-cols-1 desk:grid-cols-2 desk:column-gap-[72px]">
+        {/* Desktop (768px and up): Two equal columns, 48px gap between them */}
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
           {articles.map((article, idx) => {
-            const sectionName = sectionLabel(article.section as Section);
             const image = article.heroImage;
 
             return (
               <Reveal key={article.slug} variant="up" delay={idx * 70}>
                 <Link
                   href={`/${article.section}/${article.slug}`}
-                  className="relative group grid grid-cols-[72px_1fr] desk:grid-cols-[96px_minmax(0,1fr)_minmax(0,1.3fr)_auto] items-center gap-[22px] py-[22px] border-t border-line overflow-hidden px-3 -mx-3"
+                  className="relative group border-t border-line py-6 overflow-hidden block min-w-0"
                 >
                   {/* Sliding cream-dark background on hover */}
                   <div
@@ -45,38 +43,82 @@ export default function InThisIssueContents({ articles }: InThisIssueContentsPro
                     className="absolute inset-0 bg-cream-dark origin-left scale-x-0 transition-transform duration-300 ease-[var(--ease-out)] @media(hover:hover):group-hover:scale-x-100 motion-reduce:transition-none pointer-events-none"
                   />
 
-                  {/* 3:4 Thumbnail or placeholder - scales 1.06 on hover */}
-                  <div className="relative z-10 aspect-3/4 bg-cream-dark overflow-hidden w-full flex items-center justify-center border border-line/40">
-                    {image ? (
-                      <Image
-                        src={image}
-                        alt={article.title}
-                        fill
-                        sizes="96px"
-                        className="object-cover transition-transform duration-300 ease-[var(--ease-out)] @media(hover:hover):group-hover:scale-106 motion-reduce:transform-none"
-                      />
-                    ) : (
-                      <span className="font-display italic text-[14px] text-navy/30 select-none">
-                        {sectionName}
+                  {/* Desktop Layout (768px and up):
+                      Grid columns: thumbnail 106px, title 220px, excerpt flexible (max 240px), READ link 96px.
+                      Gap between items: 24px. Align items top.
+                  */}
+                  <div className="relative z-10 hidden md:grid md:grid-cols-[106px_220px_minmax(0,240px)_96px] md:gap-6 md:items-start min-w-0">
+                    {/* Thumbnail: 106px wide, 142px tall, object-fit cover */}
+                    <div className="relative w-[106px] h-[142px] overflow-hidden flex-shrink-0 border border-line rounded-none min-w-0">
+                      {image ? (
+                        <Image
+                          src={image}
+                          alt={article.title}
+                          fill
+                          sizes="106px"
+                          className="w-full h-full object-cover object-center rounded-none transition-transform duration-300 ease-[var(--ease-out)] @media(hover:hover):group-hover:scale-105 motion-reduce:transform-none"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-cream-dark" />
+                      )}
+                    </div>
+
+                    {/* Title: Playfair Display, 28px on desktop (1024px+), 24px under 1024px.
+                        Allow wrapping to two lines. overflow-wrap: anywhere. Never overlap excerpt. */}
+                    <h3
+                      className="font-display font-bold text-navy leading-[1.1] text-[24px] lg:text-[28px] line-clamp-2 min-w-0 m-0 [overflow-wrap:anywhere]"
+                    >
+                      {article.title}
+                    </h3>
+
+                    {/* Excerpt: Lexend, --color-ink, max-width 240px, line-height 1.6 */}
+                    <p className="font-body text-ink text-sm leading-[1.6] max-w-[240px] line-clamp-4 min-w-0 m-0">
+                      {article.excerpt}
+                    </p>
+
+                    {/* READ link: --color-gold-text, Lexend, uppercase, aligned to right edge */}
+                    <div className="flex justify-end items-start min-w-0">
+                      <span className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-gold-text inline-flex items-center gap-1">
+                        <span>Read</span>
+                        <HoverArrow distance={4} />
                       </span>
-                    )}
+                    </div>
                   </div>
 
-                  {/* Section Name - moves 10px right on hover */}
-                  <span className="relative z-10 font-display italic font-medium text-[clamp(30px,3.2vw,46px)] leading-none text-navy transition-all duration-300 ease-[var(--ease-out)] @media(hover:hover):group-hover:translate-x-2.5 motion-reduce:transform-none">
-                    {sectionName}
-                  </span>
+                  {/* Mobile Layout (under 768px):
+                      One column. Thumbnail left (80px wide, 112px tall),
+                      title and excerpt stacked on right, READ link below excerpt.
+                  */}
+                  <div className="relative z-10 grid grid-cols-[80px_1fr] gap-4 items-start md:hidden min-w-0">
+                    {/* Mobile Thumbnail: 80px wide, 112px tall */}
+                    <div className="relative w-[80px] h-[112px] overflow-hidden flex-shrink-0 border border-line rounded-none min-w-0">
+                      {image ? (
+                        <Image
+                          src={image}
+                          alt={article.title}
+                          fill
+                          sizes="80px"
+                          className="w-full h-full object-cover object-center rounded-none"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-cream-dark" />
+                      )}
+                    </div>
 
-                  {/* Story line */}
-                  <span className="relative z-10 font-body text-[14px] leading-[1.5] text-ink max-w-[380px] hidden desk:block">
-                    {article.title}
-                  </span>
-
-                  {/* Read -> kicker with moving arrow, hidden below desk */}
-                  <span className="relative z-10 kicker justify-self-end hidden desk:inline-flex items-center gap-1 text-gold-text">
-                    <span>Read</span>
-                    <HoverArrow distance={4} />
-                  </span>
+                    {/* Title, Excerpt, READ stacked */}
+                    <div className="flex flex-col min-w-0">
+                      <h3 className="font-display font-bold text-navy leading-[1.1] text-[20px] line-clamp-2 min-w-0 m-0 [overflow-wrap:anywhere]">
+                        {article.title}
+                      </h3>
+                      <p className="font-body text-ink text-xs leading-[1.6] mt-2 mb-3 line-clamp-3 min-w-0">
+                        {article.excerpt}
+                      </p>
+                      <span className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-text inline-flex items-center gap-1 self-start">
+                        <span>Read</span>
+                        <HoverArrow distance={4} />
+                      </span>
+                    </div>
+                  </div>
                 </Link>
               </Reveal>
             );

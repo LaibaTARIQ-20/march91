@@ -51,3 +51,4 @@ media/
 # agent instruction files
 AGENTS.md
 CLAUDE.md
+screenshot-*.png

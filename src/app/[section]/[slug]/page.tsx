@@ -66,7 +66,7 @@ export default async function ArticlePage({ params }: Props) {
   const shareUrl = `${siteConfig.siteUrl}/${article.section}/${article.slug}`;
 
   return (
-    <div className="py-10 desk:py-16">
+    <div className="py-16 desk:py-24">
       <ReadingProgress />
 
       <Wrap>
@@ -89,9 +89,9 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         ) : null}
 
-        {/* ── Reading Column: max 680px, font-body 1.125rem, line-height 1.8 ── */}
-        <div className="max-w-[680px] mx-auto">
-          <div className="space-y-6 text-[1.125rem] leading-[1.8] font-body text-ink">
+        {/* ── Reading Column: max 65ch on desktop, font-body 1.125rem, line-height 1.6 ── */}
+        <div className="max-w-[65ch] mx-auto">
+          <div className="article-text space-y-4 text-[1.125rem] leading-[1.6] font-body text-ink">
             {article.body.map((para, idx) => {
               const isFirst = idx === 0;
               return (

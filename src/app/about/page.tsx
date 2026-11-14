@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <Container className="py-10 md:py-16">
+    <Container className="py-16 desk:py-24">
       <div className="max-w-2xl mx-auto">
         <h1 className="font-display text-4xl md:text-5xl font-bold mb-8 text-navy">
           About
         </h1>
 
-        <p className="font-body text-base leading-relaxed mb-12 text-ink">
+        <p className="article-text font-body text-base leading-relaxed mb-12 text-ink">
           {aboutContent.description}
         </p>
 

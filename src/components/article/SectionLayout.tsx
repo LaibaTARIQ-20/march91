@@ -48,13 +48,13 @@ export function ArticleCard({
       </span>
 
       <h3
-        className={`font-display font-bold text-navy my-2 link-sweep inline-block group-hover:text-navy transition-colors ${isLead ? "text-[32px] desk:text-[40px] leading-[1.05]" : "text-[24px] desk:text-[28px] leading-[1.1]"
+        className={`font-display font-bold text-navy mt-2 mb-2 link-sweep inline-block group-hover:text-navy transition-colors ${isLead ? "text-[32px] desk:text-[40px] leading-[1.1]" : "text-[24px] desk:text-[28px] leading-[1.1]"
           }`}
       >
         {article.title}
       </h3>
 
-      <p className="font-body text-ink text-sm leading-relaxed line-clamp-3 mb-2">
+      <p className="font-body text-ink text-sm leading-[1.6] line-clamp-3 mb-2">
         {article.excerpt}
       </p>
 

@@ -41,7 +41,7 @@ export default async function SectionPage({ params }: Props) {
   const formattedIndex = sectionIndex < 10 ? `0${sectionIndex}` : `${sectionIndex}`;
 
   return (
-    <div className="py-10 desk:py-16">
+    <div className="py-16 desk:py-24">
       <Wrap>
         {/* ── Masthead block ── */}
         <div className="flex justify-between items-baseline border-b border-line pb-6 mb-10">

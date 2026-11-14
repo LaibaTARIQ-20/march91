@@ -52,7 +52,7 @@ export default function QuoteCarousel() {
 
   return (
     <section
-      className="bg-cream-dark py-27.5 pb-22.5 relative overflow-hidden"
+      className="bg-cream-dark py-16 desk:py-24 relative overflow-hidden"
       aria-label="Editorial Notes"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -75,12 +75,12 @@ export default function QuoteCarousel() {
           </div>
         ) : (
           <div className="relative max-w-250 mx-auto text-center">
-            {/* Outline Opening Quote Mark: Playfair, text-transparent, -webkit-text-stroke 1px rgba(20,40,80,0.15), 240px */}
+            {/* Outline Opening Quote Mark: Playfair, text-transparent, -webkit-text-stroke 1px var(--color-line), 240px */}
             <span
               aria-hidden="true"
               className="absolute -top-16 -left-6 desk:-left-12 font-display text-[240px] leading-none select-none pointer-events-none text-transparent"
               style={{
-                WebkitTextStroke: "1px rgba(20, 40, 80, 0.15)",
+                WebkitTextStroke: "1px var(--color-line)",
               }}
             >
               “

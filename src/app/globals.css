@@ -18,11 +18,11 @@
   --dur-base: 500ms;
   --dur-slow: 800ms;
 
-  /* ── Fonts ── */
-  --font-display: "Playfair Display", "Georgia", serif;
-  --font-body: "Lexend", system-ui, -apple-system, sans-serif;
+  /* ── Fonts: Playfair Display and Lexend only ── */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Lexend", sans-serif;
   /* Alias: font-heading maps to the same Lexend stack (used for nav, kickers, UI labels) */
-  --font-heading: "Lexend", system-ui, -apple-system, sans-serif;
+  --font-heading: "Lexend", sans-serif;
 
   /* ── Custom breakpoint ── */
   --breakpoint-desk: 821px;
@@ -52,10 +52,32 @@
     background: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-body);
+    line-height: 1.6;
     margin: 0;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  /* Display headings: Playfair Display, line-height 1.1, letter-spacing 0 */
+  h1, h2, .h1, .h2 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  /* Space between heading and body: 12px (Tailwind step 3) */
+  h1 + p, h2 + p, h3 + p, h4 + p, .h2 + p, [class*="font-display"] + p {
+    margin-top: 0.75rem;
+  }
+
+  /* Space between paragraphs: 16px (Tailwind step 4) */
+  p + p {
+    margin-top: 1rem;
   }
 
   a {
@@ -74,6 +96,13 @@
 }
 
 @layer components {
+  .article-text {
+    text-align: justify;
+    hyphens: auto;
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
   /* Link sweep underline animation */
   .link-sweep {
     background-image: linear-gradient(var(--color-navy), var(--color-navy));
@@ -138,15 +167,28 @@
     color: var(--color-cream);
   }
 
-  /* Section heading: Playfair 900, clamp(40px,5vw,72px), line-height 1, tracking -.02em, navy */
+  /* Section heading: Playfair 900, clamp(40px,5vw,72px), line-height 1.1, tracking 0, navy */
   .h2 {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: clamp(40px, 5vw, 72px);
-    line-height: 1;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
+    letter-spacing: 0;
     margin: 0;
     color: var(--color-navy);
+  }
+
+  /* Sub-headings: Lexend, accented with gold-text, line-height 1.3 */
+  h3, h4, h5, h6, .sub-heading {
+    color: var(--color-gold-text);
+    font-family: var(--font-body);
+    line-height: 1.3;
+  }
+
+  /* Body text article container: line-height 1.6, max line length ~65ch on desktop */
+  .article-body-text {
+    line-height: 1.6;
+    max-width: 65ch;
   }
 }
 
@@ -178,21 +220,21 @@
   user-select: none;
 }
 
-/* Cover headline: Playfair 900, clamp(52px,6.4vw,104px), line-height .95, tracking -.025em */
+/* Cover headline: Playfair 900, clamp(52px,6.4vw,104px), line-height 1.1, tracking 0 */
 .font-cover-headline {
   font-family: var(--font-display);
   font-weight: 900;
   font-size: clamp(52px, 6.4vw, 104px);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 
 /* Section title used in cover teaser and feature spread */
 .font-section-title {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 
 /* Editorial kicker (gold-text variant) */
@@ -373,9 +415,29 @@
   .db {
     animation: db 14s infinite;
   }
+  .nust-logo-spin {
+    animation: nust-spin 12s linear infinite;
+    display: block;
+  }
+  .nust-logo-spin:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes nust-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nust-logo-spin {
+    animation: none;
+    transform: none;
+  }
   .cv {
     opacity: 1;
     transform: none;

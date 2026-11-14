@@ -19,7 +19,7 @@ export default async function ArchivePage() {
   const coverSlide = heroSlides[0];
 
   return (
-    <div className="py-12 desk:py-20">
+    <div className="py-16 desk:py-24">
       <Wrap className="space-y-16">
         <div className="border-b border-line pb-6">
           <span className="kicker block mb-2">{siteConfig.credit}</span>

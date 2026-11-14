@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import CategoryNav from "@/components/layout/CategoryNav";
 import MobileMenu from "@/components/layout/MobileMenu";
 
@@ -24,6 +25,18 @@ export default function SiteHeader() {
             March &#8217;91
           </Link>
         </p>
+
+        {/* NUST logo — top-right corner, 16px from top and right */}
+        <div className="absolute top-4 right-4 z-10 pointer-events-auto">
+          <Image
+            src="/images/logos/NUST-logo.png"
+            alt="NUST official"
+            width={104}
+            height={28}
+            className="nust-logo-spin w-[40px] md:w-[56px] h-auto object-contain"
+            unoptimized
+          />
+        </div>
 
         {/* Hamburger — visible only below desk (821px) */}
         <div className="desk:hidden absolute right-5 top-1/2 -translate-y-1/2">

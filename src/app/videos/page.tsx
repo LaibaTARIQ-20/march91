@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function VideosPage() {
   return (
-    <div className="py-12">
+    <div className="py-16 desk:py-24">
       <Wrap>
         <div className="mb-10 text-center">
           <h1 className="h2 font-display font-[900] text-navy">

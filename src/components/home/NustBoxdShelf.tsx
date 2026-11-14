@@ -15,7 +15,7 @@ export default function NustBoxdShelf({ articles, tagline }: NustBoxdShelfProps)
   const validArticles = articles.filter((a) => Boolean(a.heroImage));
 
   return (
-    <section className="py-[120px]" aria-label="NUST Box'd Shelf">
+    <section className="py-16 desk:py-24" aria-label="NUST Box'd Shelf">
       <Wrap>
         <div className="grid grid-cols-1 desk:grid-cols-[1fr_1.4fr] gap-[72px] items-center">
           {/* Left: Info & Link */}
@@ -43,7 +43,7 @@ export default function NustBoxdShelf({ articles, tagline }: NustBoxdShelfProps)
                 : "@media(hover:hover):hover:-translate-y-1.5 @media(hover:hover):hover:-rotate-[1.5deg]";
 
               return (
-                <Reveal key={article.slug} variant="clip" delay={idx * 150} className={isSecond ? "desk:mt-[56px]" : ""}>
+                <Reveal key={article.slug} variant="up" delay={idx * 150} className={isSecond ? "desk:mt-[56px]" : ""}>
                   <Link
                     href={`/${article.section}/${article.slug}`}
                     className={`group block transition-transform duration-500 ease-[var(--ease-out)] motion-reduce:transform-none ${hoverTransform}`}
